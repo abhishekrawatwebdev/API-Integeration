@@ -88,7 +88,7 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
                         </div>
                         <div className="login-input register-input">
                             <label htmlFor="password">Password</label><br />
-                            <input placeholder='Enter your password' type="password" minlength="8" maxlength="16" value={password} id='login-password' required onChange={(e) => setpassword(e.target.value)} />
+                            <input placeholder='Enter your password' type="password" value={password} id='login-password' required onChange={(e) => setpassword(e.target.value)} />
                             <span id='incorrect-creds' style={{ display: IsRight ? 'none' : 'block' }}>Email id or password is incorrect</span>
                         </div>
                         <input className='btn login-Btn' id='btn-login' value="Login" type="submit" />
