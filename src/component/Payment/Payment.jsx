@@ -26,7 +26,7 @@ function Payment() {
             <form onSubmit={submitInvestingAmmount}>
             <div className="label">
               <label htmlFor="amount">Amount</label><br />
-              <input type="number" className="form-control amountInput" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="please enter an amount" required />
+              <input type="number" id='plan-payment-price' className="form-control amountInput" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="please enter an amount" required />
             </div>
             <button type="submit" className="btn btn-light payment-modal-btn">Buy Plan</button>
             </form>

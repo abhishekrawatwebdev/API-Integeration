@@ -38,13 +38,13 @@ const Profile = ({signupDetails,setsignupDetails}) => {
     }
     
     const [IsEditProfileOpen, setIsEditProfileOpen]= useState(false)
-    const setAvatar=(e)=>{
-        const src=URL.createObjectURL(e.target.files[0]);
-        const edit_avatar = document.getElementById("edit-profile-avatar");
+    // const setAvatar=(e)=>{
+    //     const src=URL.createObjectURL(e.target.files[0]);
+    //     const edit_avatar = document.getElementById("edit-profile-avatar");
         
-        edit_avatar.style.backgroundImage="url("+src+")"
+    //     edit_avatar.style.backgroundImage="url("+src+")"
 
-    }
+    // }
 
   return (
    <div>
@@ -80,15 +80,15 @@ const Profile = ({signupDetails,setsignupDetails}) => {
                     </div>
                     <div className="edit-input-grp">
                         <label htmlFor="edit-email">Email</label>
-                    <input type="text" id='edit-email' name='edit-email'/>
+                    <input type="email" id='edit-email' name='edit-email'/>
                     </div>
                     <div className="edit-input-grp">
                         <label htmlFor="edit-contact">Contact number</label>
-                    <input type="text" id='edit-contact' name='edit-contact'/>
+                    <input maxLength={10} minLength={10} type="tel" id='edit-contact' name='edit-contact'/>
                     </div>
                     <div className="edit-input-grp">
                         <label htmlFor="edit-adhaar">Adhaar number</label>
-                    <input type="text" id='edit-adhaar' name='edit-adhaar' readOnly/>
+                    <input maxLength={12} minLength={12} type="number" id='edit-adhaar' name='edit-adhaar' readOnly/>
                     </div>
 
                 </div>
@@ -96,26 +96,25 @@ const Profile = ({signupDetails,setsignupDetails}) => {
                     <center>
                 <div className="profile-avatar-container">
                 <div className="profile-avatar" id='edit-profile-avatar'></div>
-                <input type="file" accept='image/*' onInputCapture={setAvatar}  id='edit-profile-file'/>
               </div>
               </center>
                 </div>
                 <div className="right-edits-inputs">
                     <div className="edit-input-grp">
                         <label htmlFor="edit-ifsc">IFSC</label>
-                    <input type="text" id='edit-ifsc' name='edit-ifsc'/>
+                    <input readOnly pattern="^[A-Za-z]{4}[a-zA-Z0-9]{7}$" type="text" id='edit-ifsc' name='edit-ifsc'/>
                     </div>
                     <div className="edit-input-grp">
                         <label htmlFor="edit-account">Account number</label>
-                    <input type="text" id='edit-account' name='edit-account'/>
+                    <input readOnly type="text" id='edit-account' name='edit-account'/>
                     </div>
                     <div className="edit-input-grp">
                         <label htmlFor="edit-password">New Password</label>
-                    <input type="password" id='edit-password' name='edit-password'/>
+                    <input pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' type="password" id='edit-password' name='edit-password'/>
                     </div>
                     <div className="edit-input-grp">
                         <label htmlFor="edit-confirm-pass">Confirm Password</label>
-                    <input type="password" id='edit-confirm-pass' name='edit-confirm-pass' />
+                    <input pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' type="password" id='edit-confirm-pass' name='edit-confirm-pass' />
                     </div>
                 </div>
 

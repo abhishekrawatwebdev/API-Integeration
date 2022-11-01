@@ -12,7 +12,7 @@ const Verification = ({ signupDetails, setsignupDetails, isLoggedIn, setIsLogged
     const submitVerificationForm = (e) => {
         setModalShow(true)
         e.preventDefault()
-        console.log(signupDetails);
+        // console.log(signupDetails);
 
         axios.post(url, {
             Name: signupDetails.Name,
@@ -26,7 +26,7 @@ const Verification = ({ signupDetails, setsignupDetails, isLoggedIn, setIsLogged
 
         })
             .then((response) => {
-                console.log(response);
+                // console.log(response);
                 alert(response.data.message)
                 // setsignupDetails("")
                 navigate("/profile")
@@ -51,6 +51,8 @@ const Verification = ({ signupDetails, setsignupDetails, isLoggedIn, setIsLogged
     }, [signupDetails.Email])
 
     const handleChange = e => {
+        
+
         const { name, value } = e.target
         setsignupDetails({
             ...signupDetails,//spread operator 
@@ -74,9 +76,10 @@ const Verification = ({ signupDetails, setsignupDetails, isLoggedIn, setIsLogged
 
                     />
                 </div>
+                
                 <div className="data">
                     <label htmlFor="contact">Contact No.</label><br />
-                    <input required pattern="[0-9]{10}" type="tel" className="form-control" name="Phone" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="+91"
+                    <input required pattern="[0-9]{10}" type="tel"  className="form-control" name="Phone" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Your contact number"
                         value={signupDetails.Phone || ""}
                         onChange={handleChange}
                     />
@@ -88,15 +91,15 @@ const Verification = ({ signupDetails, setsignupDetails, isLoggedIn, setIsLogged
                 <div className="data">
                     <label htmlFor="account">Account No.</label><br />
                     <input required name="Account_No"
-                        value={signupDetails.Account_No || ""} type="number" maxLength="12" minLength="8" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter your acc. no." onChange={handleChange} />
+                        value={signupDetails.Account_No || ""} type="number" maxLength={12} minLength={8} className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter your acc. no." onChange={handleChange} />
                 </div>
                 <div className="data">
                     <label htmlFor="adhaar">Adhaar No.</label><br />
-                    <input required name="Aadhaar_Number" minLength="12" maxLength="12" value={signupDetails.Aadhaar_Number || ""} type="number" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter your adhaar no." onChange={handleChange} />
+                    <input required name="Aadhaar_Number" minLength={12} maxLength={12} value={signupDetails.Aadhaar_Number || ""} type="number" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter your adhaar no." onChange={handleChange} />
                 </div>
                 <div className="data">
                     <label htmlFor="ifsc">IFSC Code</label><br />
-                    <input required type="text" pattern="^[A-Za-z]{4}[a-zA-Z0-9]{7}$" maxLength="11" minLength="11" name="IFSC_Code" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter IFSC code" value={signupDetails.IFSC_Code||""} onChange={handleChange}  />
+                    <input required type="text" pattern="^[A-Za-z]{4}[a-zA-Z0-9]{7}$" maxLength={11} minLength={11} name="IFSC_Code" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter IFSC code" value={signupDetails.IFSC_Code||""} onChange={handleChange}  />
                 </div>
                 <button id="submit" type="submit" className="btn btn-light my-btn" style={{ color: "white" }} >Submit</button>
             </form>

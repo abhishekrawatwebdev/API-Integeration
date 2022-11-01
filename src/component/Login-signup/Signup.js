@@ -34,7 +34,7 @@ function Signup({ signupDetails, setsignupDetails, setIsLoggedIn, IsLoggedIn }) 
                 Email: signupDetails.Email,
             })
                 .then((response) => {
-                    console.log(response);
+                    // console.log(response);
                     setIsLoggedIn(true)
                     setIsLoading(false)
                     navigate("/profileVerification")
