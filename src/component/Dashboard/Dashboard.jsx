@@ -4,10 +4,12 @@ import girlBudget from "../../images/girlBudget.png"
 import businessMan from "../../images/businessMan.png"
 import cashCoin from "../../images/cashCoin.png"
 import { ProgressBar } from 'react-loader-spinner'
+import { useNavigate } from 'react-router-dom'
 
 
 
 const Dasboard = () => {
+  const navigate = useNavigate()
   const dashboardData = [
     {
       cardName: "Total Investment",
@@ -60,7 +62,7 @@ return (
             You now have access to your very own Dashboard.
             </h1>
           <div>
-            <button className='dasboard-newInvest'>New Investment</button>
+            <button onClick={()=>navigate("/newInvestment")} className='dasboard-newInvest'>New Investment</button>
           </div>
         </div>
         <div className="dashboard-main-sec">
