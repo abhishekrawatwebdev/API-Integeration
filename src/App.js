@@ -20,7 +20,7 @@ import axios from "axios";
 function App() {
 
 
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState("");
 
 
   // props for profile section
@@ -47,24 +47,24 @@ function App() {
     IFSC_Code: "",
   })
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchprofil()
-  },[])
+  }, [])
 
   // fetching profile details
-  function fetchprofil(){
-    const url ="https://growpital.herokuapp.com/auth/profile"
-    axios.get(url, { headers: { token: localStorage.getItem("token")  } })
-    .then(response => {
+  function fetchprofil() {
+    const url = "https://growpital.herokuapp.com/auth/profile"
+    axios.get(url, { headers: { token: localStorage.getItem("token") } })
+      .then(response => {
         // If request is good...
         // console.log(response);
         setsignupDetails(response.data.data)
         setUpdateItem(response.data.data)
-     })
-    .catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
 
-     });
+      });
   }
 
 
@@ -86,7 +86,7 @@ function App() {
 
           <Route path="dashboard" element={
             <Protected isLoggedIn={isLoggedIn}>
-              <Dashboard signupDetails={signupDetails}/>
+              <Dashboard signupDetails={signupDetails} />
             </Protected>
           } />
           <Route path="contactUs" element={
@@ -96,23 +96,23 @@ function App() {
 
           <Route path="newInvestment" element={
             <Protected isLoggedIn={isLoggedIn}>
-              <NewInvestment signupDetails={signupDetails}/>
+              <NewInvestment signupDetails={signupDetails} />
             </Protected>
           } />
 
           <Route path="profile" element={
             <Protected isLoggedIn={isLoggedIn}>
               <Profile signupDetails={signupDetails}
-                setsignupDetails={setsignupDetails} 
+                setsignupDetails={setsignupDetails}
                 updateItem={updateItem}
                 setUpdateItem={setUpdateItem}
-                />
+              />
             </Protected>
           } />
 
           <Route path="wallet" element={
             <Protected isLoggedIn={isLoggedIn}>
-              <Wallet signupDetails={signupDetails}/>
+              <Wallet signupDetails={signupDetails} />
             </Protected>
           } />
 

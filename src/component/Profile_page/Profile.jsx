@@ -36,14 +36,6 @@ const Profile = ({ signupDetails, setsignupDetails, updateItem, setUpdateItem })
 
 
 
-    const setAvatar = (e) => {
-        const src = URL.createObjectURL(e.target.files[0]);
-        const edit_avatar = document.getElementById("edit-profile-avatar");
-
-        edit_avatar.style.backgroundImage = "url(" + src + ")"
-
-    }
-
     function updateProfile(updateItem) {
         setIsLoading(true)
         axios.patch(url,

@@ -46,14 +46,14 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
                 // if some error occured
                 .catch((err) => {
                     setIsLoading(false)
-                    console.log(err);
-                    // setIsLoggedIn(false)
-                    alert(err.response.data.error)
+                    setIsRight(false)
+
                 })
 
         } else {
             setIsLoading(false)
-            alert("Invalid email")
+            // alert("Invalid email")
+            setIsRight(true)
         }
     };
 

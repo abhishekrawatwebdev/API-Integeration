@@ -88,11 +88,11 @@ const Verification = ({ signupDetails, setsignupDetails, isLoggedIn, setIsLogged
                 <div className="data">
                     <label htmlFor="account">Account No.</label><br />
                     <input required name="Account_No"
-                        value={signupDetails.Account_No || ""} type="number" maxLength={12} minLength={8} className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter your acc. no." onChange={handleChange} />
+                        value={signupDetails.Account_No || ""} type="text" pattern="[0-9]{8,12}" maxLength={12} minLength={8} className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter your acc. no." onChange={handleChange} />
                 </div>
                 <div className="data">
                     <label htmlFor="adhaar">Adhaar No.</label><br />
-                    <input required name="Aadhaar_Number" minLength="12" maxLength={12} value={signupDetails.Aadhaar_Number || ""} type="number" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter your adhaar no." onChange={handleChange} />
+                    <input required name="Aadhaar_Number" pattern="[0-9]{12}" minLength={12} maxLength={12} value={signupDetails.Aadhaar_Number || ""} type="text" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter your adhaar no." onChange={handleChange} />
                 </div>
                 <div className="data">
                     <label htmlFor="ifsc">IFSC Code</label><br />
