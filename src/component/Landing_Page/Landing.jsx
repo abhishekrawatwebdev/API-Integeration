@@ -15,15 +15,7 @@ const Landing = ({isLoggedIn,setIsLoggedIn}) => {
     
  
 
-  useEffect(()=>{
-     localStorage.clear()
-     setIsLoggedIn("")
-    setIsLoading(true)
-
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 2000);
-  }, [])
+    
 
   return (
     <div>

@@ -10,8 +10,7 @@ const MainNavbar = ({isLoggedIn, setIsLoggedIn,signupDetails}) => {
     const[IsnavOpen, setIsnavOpen]=useState(false);
     
     const navigate = useNavigate()
-   
-  
+    
   return (
     <div>
         <nav className="mobile-navlinks" id={IsnavOpen? "openNav":"closedNav"}  >
@@ -47,7 +46,7 @@ const MainNavbar = ({isLoggedIn, setIsLoggedIn,signupDetails}) => {
 
                     <li className='ms-5'>
                         {
-                            isLoggedIn !=="" || null ? <Dropdown>
+                            isLoggedIn ? <Dropdown>
                                             <Dropdown.Toggle  id="dropdown-basic">
                                                 <div className="avatar"></div> {signupDetails.Name}
                                             </Dropdown.Toggle>
@@ -69,7 +68,7 @@ const MainNavbar = ({isLoggedIn, setIsLoggedIn,signupDetails}) => {
                 </ul>
             </div>
             {
-                isLoggedIn !=="" || null? (<div className="hamburger">
+                isLoggedIn!=="" || null? (<div className="hamburger">
                 <img src={hamburger} alt="" onClick={()=>setIsnavOpen(true)}  />
             </div>):(<div className="button-grp button-grp-mobile">
           <button onClick={()=>navigate('/login')} className='login-btn'>Login</button>

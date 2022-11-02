@@ -34,7 +34,7 @@ function Signup({ signupDetails, setsignupDetails, setIsLoggedIn, IsLoggedIn }) 
                 Email: signupDetails.Email,
             })
                 .then((response) => {
-                    // console.log(response);
+                    console.log(response);
                     setIsLoggedIn(true)
                     setIsLoading(false)
                     navigate("/profileVerification")
@@ -42,7 +42,7 @@ function Signup({ signupDetails, setsignupDetails, setIsLoggedIn, IsLoggedIn }) 
                 .catch((err) => {
 
                     console.log(err);
-                    alert(err.response.data.error)
+                    alert("some error occured")
                     setIsLoading(false)
                 })
 

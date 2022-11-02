@@ -8,7 +8,7 @@ import { ProgressBar } from  'react-loader-spinner'
 
 
 
-const Wallet = () => {
+const Wallet = ({signupDetails}) => {
 
     const [isloading, setIsLoading] = useState(false)
 
@@ -42,7 +42,7 @@ const Wallet = () => {
        You can check your <br />
        wallet and transactions here.
        </h3>
-       <Amount/>
+       <Amount signupDetails={signupDetails}/>
        </div>
        <div className="transactions">
        <h4 className='trans-heading'>All Transactions</h4>

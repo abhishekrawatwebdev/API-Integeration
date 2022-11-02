@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./component/Dashboard/Dashboard"
@@ -13,29 +13,60 @@ import Wallet from "./component/Wallet/Wallet";
 import ProfileVerification from "./component/ProfileVerification/ProfileVerification";
 import MyInvestment from "./component/MyInvestment/MyInvestment";
 import MainNavbar from './component/Navbar/MainNavbar'
-import { ProgressBar } from 'react-loader-spinner'
+import axios from "axios";
 
-import { useEffect } from "react";
+
 
 function App() {
 
+
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token"));
-  const [isLoading, setIsLoading] = useState(false)
+
+
+  // props for profile section
   const [signupDetails, setsignupDetails] = useState({
     Name: "",
     Email: "",
     Password: "",
     Phone: "",
-    Balance: "1000",
+    Balance: "",
     Aadhaar_Number: "",
     Account_No: "",
     IFSC_Code: "",
   })
 
+  // props for updating profile
+  const [updateItem, setUpdateItem] = useState({
+    Name: "",
+    Email: "",
+    Password: "",
+    Phone: "",
+    Balance: "",
+    Aadhaar_Number: "",
+    Account_No: "",
+    IFSC_Code: "",
+  })
 
-  // useEffect(() => {
-  //   console.log(isLoggedIn);
-  // }, [isLoggedIn])
+  useEffect(()=>{
+    fetchprofil()
+  },[])
+
+  // fetching profile details
+  function fetchprofil(){
+    const url ="https://growpital.herokuapp.com/auth/profile"
+    axios.get(url, { headers: { token: localStorage.getItem("token")  } })
+    .then(response => {
+        // If request is good...
+        // console.log(response);
+        setsignupDetails(response.data.data)
+        setUpdateItem(response.data.data)
+     })
+    .catch((error) => {
+        console.log(error);
+
+     });
+  }
+
 
 
 
@@ -55,7 +86,7 @@ function App() {
 
           <Route path="dashboard" element={
             <Protected isLoggedIn={isLoggedIn}>
-              <Dashboard />
+              <Dashboard signupDetails={signupDetails}/>
             </Protected>
           } />
           <Route path="contactUs" element={
@@ -65,20 +96,23 @@ function App() {
 
           <Route path="newInvestment" element={
             <Protected isLoggedIn={isLoggedIn}>
-              <NewInvestment />
+              <NewInvestment signupDetails={signupDetails}/>
             </Protected>
           } />
 
           <Route path="profile" element={
             <Protected isLoggedIn={isLoggedIn}>
               <Profile signupDetails={signupDetails}
-                setsignupDetails={setsignupDetails} />
+                setsignupDetails={setsignupDetails} 
+                updateItem={updateItem}
+                setUpdateItem={setUpdateItem}
+                />
             </Protected>
           } />
 
           <Route path="wallet" element={
             <Protected isLoggedIn={isLoggedIn}>
-              <Wallet />
+              <Wallet signupDetails={signupDetails}/>
             </Protected>
           } />
 

@@ -5,9 +5,13 @@ import { ProgressBar } from  'react-loader-spinner'
 import PlanCards from './Plan_cards'
 import Payment from '../Payment/Payment'
 
-const NewInvestment = () => {
+const NewInvestment = ({signupDetails}) => {
     // eslint-disable-next-line no-unused-vars
-    const [IsPlanSelected, setIsPlanSelected] = useState(false)
+    // const [IsPlanSelected, setIsPlanSelected] = useState(false)
+
+    const [PlanName , setPlanName] = useState("")
+
+    const [Roi , setRoi] = useState("")
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -33,20 +37,20 @@ const NewInvestment = () => {
             />
         </div>):(<><div className="new-investment-sec">
         <h1 className='new-investment-heading'>
-            Hey USERNAME,<br />
+            Hey {signupDetails.Name},<br />
            Multiplying your money isn't as difficult as you think.
         </h1>
         <div className='new-investment-plans'>
             <p className='landing-para landing-plan-para'>We Currently have three plans avialable  <br />
             Choose wisely as per your needs and investment capacity</p><br />
             <div className="investment-plans">
-                <PlanCards/>
+                <PlanCards setPlanName={setPlanName} Roi={Roi} setRoi={setRoi}/>
             </div>
         </div>
         
     </div>
        
-        <Payment/></>)}
+        <Payment Roi={Roi} PlanName={PlanName} setIsLoading={setIsLoading}/></>)}
     </div>
   )}
     

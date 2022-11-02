@@ -38,9 +38,10 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
                 // if response is good
                 .then((response) => {
                     setIsLoading(false)
+                    console.log(response);
                     localStorage.setItem("token", response.data.token)
                     setIsLoggedIn(localStorage.getItem("token"))
-                    navigate("/profile")
+                    navigate("/dashboard")
                 })
                 // if some error occured
                 .catch((err) => {
@@ -54,8 +55,6 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
             setIsLoading(false)
             alert("Invalid email")
         }
-
-
     };
 
     if (isLoading) {
@@ -88,7 +87,7 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
                         </div>
                         <div className="login-input register-input">
                             <label htmlFor="password">Password</label><br />
-                            <input placeholder='Enter your password' type="password" value={password} id='login-password' required onChange={(e) => setpassword(e.target.value)} />
+                            <input placeholder='Enter your password' type="password" minLength="8" maxLength="16" value={password} id='login-password' required onChange={(e) => setpassword(e.target.value)} />
                             <span id='incorrect-creds' style={{ display: IsRight ? 'none' : 'block' }}>Email id or password is incorrect</span>
                         </div>
                         <input className='btn login-Btn' id='btn-login' value="Login" type="submit" />

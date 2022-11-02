@@ -79,7 +79,7 @@ a#dropdown-link:hover a {
     border: 1px solid var(--Orange);
     background-color: transparent;
     padding: 0.4rem 0.6rem;
-    border-radius: 20px;
+    border-radius: 8px;
     cursor: pointer;
     transition: 0.2s all ease-in-out;
 }
