@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
 import './css/Register.css';
-// import userCredentials from '../../userCredentials/userCredentials';
-import { useNavigate } from "react-router-dom";
-import { ProgressBar } from 'react-loader-spinner'
-
 import axios from 'axios';
+import { ProgressBar } from 'react-loader-spinner';
+import { useNavigate } from "react-router-dom";
 var validator = require("email-validator");
-
-
-
 
 function Login({ isLoggedIn, setIsLoggedIn }) {
 
@@ -38,7 +33,6 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
                 // if response is good
                 .then((response) => {
                     setIsLoading(false)
-                    console.log(response);
                     localStorage.setItem("token", response.data.token)
                     setIsLoggedIn(localStorage.getItem("token"))
                     navigate("/dashboard")
@@ -46,14 +40,15 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
                 // if some error occured
                 .catch((err) => {
                     setIsLoading(false)
-                    setIsRight(false)
+                    console.log(err);
 
+                    setIsRight(false)
                 })
 
         } else {
             setIsLoading(false)
             // alert("Invalid email")
-            setIsRight(true)
+            setIsRight(false)
         }
     };
 

@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
-const Verification = ({ signupDetails, setsignupDetails, isLoggedIn, setIsLoggedIn,setModalShow }) => {
+const Verification = ({ signupDetails, setsignupDetails, isLoggedIn, setIsLoggedIn }) => {
 
     const url = 'https://growpital.herokuapp.com/auth/signup'
     const navigate = useNavigate()
 
     const submitVerificationForm = (e) => {
-        setModalShow(true)
+      
         e.preventDefault()
         console.log(signupDetails);
 
@@ -76,7 +76,7 @@ const Verification = ({ signupDetails, setsignupDetails, isLoggedIn, setIsLogged
                 </div>
                 <div className="data">
                     <label htmlFor="contact">Contact No.</label><br />
-                    <input required pattern="[0-9]{10}" type="tel" className="form-control" name="Phone" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="+91"
+                    <input required pattern="[0-9]{10}" maxLength={10} type="text" className="form-control" name="Phone" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="+91"
                         value={signupDetails.Phone || ""}
                         onChange={handleChange}
                     />

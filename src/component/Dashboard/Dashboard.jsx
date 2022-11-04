@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import "./css/dashboard.css"
 import girlBudget from "../../images/girlBudget.png"
@@ -5,15 +6,22 @@ import businessMan from "../../images/businessMan.png"
 import cashCoin from "../../images/cashCoin.png"
 import { ProgressBar } from 'react-loader-spinner'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 
 
-const Dasboard = ({signupDetails}) => {
+const Dasboard = ({signupDetails,fetchprofile,setsignupDetails,setUpdateItem}) => {
   const investurl = "https://growpital.herokuapp.com/invest/investment";
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(localStorage.getItem("token")){
+        fetchprofile()
+    }
+  },[])
 
   // total amount invest
-  const [Investment, setInvestment] = useState("");
-  const [Profit, setProfit] = useState("")
+  const [Investment, setInvestment] = useState(0);
+  const [Profit, setProfit] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
 
   const dashboardData = [
@@ -34,16 +42,16 @@ const Dasboard = ({signupDetails}) => {
     }
   ]
 
-
-
   useEffect(() => {
-    getinvest(investurl)
+    if(localStorage.getItem("token")){
+      getinvest(investurl)
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
   // api call function
-  function getinvest(url) {
+  const getinvest=(url)=> {
 
     setIsLoading(true)
     axios.get(url
@@ -112,7 +120,7 @@ const Dasboard = ({signupDetails}) => {
               You now have access to your very own Dashboard.
             </h1>
             <div>
-              <button className='dasboard-newInvest'>New Investment</button>
+              <button className='dasboard-newInvest' onClick={()=>navigate("/newInvestment")}>New Investment</button>
             </div>
           </div>
           <div className="dashboard-main-sec">

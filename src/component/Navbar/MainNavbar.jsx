@@ -5,13 +5,22 @@ import hamburger from "../../images/hamburger.svg"
 import close from "../../images/close.svg"
 import { useNavigate, NavLink } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { useEffect } from 'react'
 
-const MainNavbar = ({isLoggedIn, setIsLoggedIn,signupDetails}) => {
+const MainNavbar = ({isLoggedIn, setIsLoggedIn,signupDetails,setsignupDetails,fetchprofile}) => {
     const[IsnavOpen, setIsnavOpen]=useState(false);
     
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(localStorage.getItem("token")){
+        fetchprofile()
+    }
+    },[])
     
   return (
+
+
     <div>
         <nav className="mobile-navlinks" id={IsnavOpen? "openNav":"closedNav"}  >
             <img src={close} alt="" id='close'  onClick={()=>setIsnavOpen(false)}/>
@@ -24,7 +33,18 @@ const MainNavbar = ({isLoggedIn, setIsLoggedIn,signupDetails}) => {
                     <li onClick={()=>{navigate("/wallet");setIsnavOpen(false)}}>Wallet</li>
                     <li onClick={()=>{navigate("/contactUs");setIsnavOpen(false)}}>Contact Us</li>
                     <li onClick={()=>{navigate("/profile");setIsnavOpen(false)}}>Profile</li>
-                    <li className='mobile-logout' onClick={()=>{localStorage.clear(); setIsLoggedIn(""); navigate("/login");setIsnavOpen(false)}}>Logout</li>
+                    <li className='mobile-logout' onClick={()=>{
+                                                    localStorage.clear(); setIsLoggedIn("");
+                                                     setsignupDetails({
+                                                        Name: "",
+                                                        Email: "",
+                                                        Password: "",
+                                                        Phone: "",
+                                                        Balance: "",
+                                                        Aadhaar_Number: "",
+                                                        Account_No: "",
+                                                        IFSC_Code: "",});
+                                                        navigate("/login");}}>Logout</li>
                 </ul>
         </nav>
        <nav className='main-navbar'>
@@ -39,7 +59,9 @@ const MainNavbar = ({isLoggedIn, setIsLoggedIn,signupDetails}) => {
                     <li className="nav-link">
                         <NavLink id='nav-link-a' className={({isActive})=> isActive? "active-nav-link": ""} to="/newInvestment">New Investment</NavLink> 
                     </li>
-                    <li className="nav-link" ><NavLink id='nav-link-a' className={({isActive})=> isActive? "active-nav-link": ""} to="/myInvestments">My Investments</NavLink></li>
+                    <li className="nav-link" >
+                        <NavLink id='nav-link-a' className={({isActive})=> isActive? "active-nav-link": ""} to="/myInvestments">My Investments</NavLink>
+                    </li>
                     <li className="nav-link">
                         <NavLink id='nav-link-a' className={({isActive})=> isActive? "active-nav-link": ""} to="/wallet">Wallet</NavLink> 
                     </li>
@@ -54,7 +76,18 @@ const MainNavbar = ({isLoggedIn, setIsLoggedIn,signupDetails}) => {
                                             <Dropdown.Menu>
                                                 <Dropdown.Item id='dropdown-link' ><NavLink  to="/profile">Profile</NavLink> </Dropdown.Item>
                                                 <Dropdown.Item id='dropdown-link'> <NavLink  to="/contactUs">Contact Us</NavLink></Dropdown.Item>
-                                                <Dropdown.Item id='dropdown-link'><NavLink onClick={()=>{localStorage.clear(); setIsLoggedIn(""); navigate("/login");}}>Logout</NavLink></Dropdown.Item>
+                                                <Dropdown.Item id='dropdown-link'><NavLink onClick={()=>{
+                                                    localStorage.clear(); setIsLoggedIn("");
+                                                     setsignupDetails({
+                                                        Name: "",
+                                                        Email: "",
+                                                        Password: "",
+                                                        Phone: "",
+                                                        Balance: "",
+                                                        Aadhaar_Number: "",
+                                                        Account_No: "",
+                                                        IFSC_Code: "",});
+                                                        navigate("/login");}}>Logout</NavLink></Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown>: (<div className="button-grp">
                                                         <button onClick={()=>navigate('/login')} className='login-btn'>Login</button>

@@ -1,4 +1,5 @@
-import React,{useState,useEffect} from 'react'
+/* eslint-disable no-unused-vars */
+import React,{useState} from 'react'
 import './css/landing.css';
 import backVideo from '../../images/backVideo.mp4'
 import { useNavigate } from 'react-router-dom';

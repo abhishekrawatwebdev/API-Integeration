@@ -20,7 +20,7 @@ import axios from "axios";
 function App() {
 
 
-  const [isLoggedIn, setIsLoggedIn] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token"));
 
 
   // props for profile section
@@ -48,16 +48,29 @@ function App() {
   })
 
   useEffect(() => {
-    fetchprofil()
+    if (!localStorage.getItem("token")) {
+      setsignupDetails({
+        Name: "",
+        Email: "",
+        Password: "",
+        Phone: "",
+        Balance: "",
+        Aadhaar_Number: "",
+        Account_No: "",
+        IFSC_Code: "",
+      })
+
+      // console.log("here");
+    }
   }, [])
 
   // fetching profile details
-  function fetchprofil() {
+
+  const fetchprofile = () => {
     const url = "https://growpital.herokuapp.com/auth/profile"
     axios.get(url, { headers: { token: localStorage.getItem("token") } })
       .then(response => {
         // If request is good...
-        // console.log(response);
         setsignupDetails(response.data.data)
         setUpdateItem(response.data.data)
       })
@@ -68,14 +81,12 @@ function App() {
   }
 
 
-
-
   return (
     <div className="App">
 
       <BrowserRouter>
 
-        <MainNavbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} signupDetails={signupDetails} />
+        <MainNavbar fetchprofile={fetchprofile} setsignupDetails={setsignupDetails} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} signupDetails={signupDetails} setsignupDetail={setsignupDetails} />
 
 
         <Routes>
@@ -86,7 +97,7 @@ function App() {
 
           <Route path="dashboard" element={
             <Protected isLoggedIn={isLoggedIn}>
-              <Dashboard signupDetails={signupDetails} />
+              <Dashboard signupDetails={signupDetails} fetchprofile={fetchprofile} setsignupDetails={setsignupDetails} setUpdateItem={setUpdateItem} />
             </Protected>
           } />
           <Route path="contactUs" element={
@@ -106,6 +117,7 @@ function App() {
                 setsignupDetails={setsignupDetails}
                 updateItem={updateItem}
                 setUpdateItem={setUpdateItem}
+                fetchprofile={fetchprofile}
               />
             </Protected>
           } />

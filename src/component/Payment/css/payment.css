@@ -20,6 +20,12 @@
     background-color: #353535;
 }
 
+#payment-warning {
+    color: var(--matteOrange);
+    font-size: 0.8rem;
+    display: none;
+}
+
 .top {
     display: flex;
     flex-direction: column-reverse;

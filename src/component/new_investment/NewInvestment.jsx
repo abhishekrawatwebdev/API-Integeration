@@ -10,6 +10,8 @@ const NewInvestment = ({signupDetails}) => {
     // const [IsPlanSelected, setIsPlanSelected] = useState(false)
 
     const [PlanName , setPlanName] = useState("")
+    const [minimumPrice,setMinimumPrice]= useState(0)
+    const [maximumPrice,setMaximumPrice]= useState(0)
 
     const [Roi , setRoi] = useState("")
 
@@ -35,7 +37,8 @@ const NewInvestment = ({signupDetails}) => {
                 borderColor='#FFA217'
                 barColor='#CCA15F'
             />
-        </div>):(<><div className="new-investment-sec">
+        </div>):
+        (<><div className="new-investment-sec">
         <h1 className='new-investment-heading'>
             Hey {signupDetails.Name},<br />
            Multiplying your money isn't as difficult as you think.
@@ -44,13 +47,13 @@ const NewInvestment = ({signupDetails}) => {
             <p className='landing-para landing-plan-para'>We Currently have three plans avialable  <br />
             Choose wisely as per your needs and investment capacity</p><br />
             <div className="investment-plans">
-                <PlanCards setPlanName={setPlanName} Roi={Roi} setRoi={setRoi}/>
+                <PlanCards minimumPrice={minimumPrice} setMaximumPrice={setMaximumPrice} setMinimumPrice={setMinimumPrice} maximumPrice={maximumPrice} setPlanName={setPlanName} Roi={Roi} setRoi={setRoi}/>
             </div>
         </div>
         
     </div>
        
-        <Payment Roi={Roi} PlanName={PlanName} setIsLoading={setIsLoading}/></>)}
+        <Payment minimumPrice={minimumPrice} setMaximumPrice={setMaximumPrice} setMinimumPrice={setMinimumPrice} maximumPrice={maximumPrice} Roi={Roi} PlanName={PlanName} setIsLoading={setIsLoading}/></>)}
     </div>
   )}
     

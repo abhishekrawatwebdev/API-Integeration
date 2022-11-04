@@ -42,7 +42,7 @@ function Signup({ signupDetails, setsignupDetails, setIsLoggedIn, IsLoggedIn }) 
                 .catch((err) => {
 
                     console.log(err);
-                    alert("some error occured")
+                    alert(err.response.data.error)
                     setIsLoading(false)
                 })
 
